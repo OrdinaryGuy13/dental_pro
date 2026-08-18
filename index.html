@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>My first three.js app</title>
+    <link rel="stylesheet" href="./style/style.css" />
+  </head>
+  <body>
+    <div id="loading-screen">
+      <div class="loading-content">
+        <img src="./assets/img/logo.jpg" alt="Logo" class="loading-logo" />
+        <div class="loading-title">Dental Pro</div>
+        <div class="loading-progress">
+          <div id="loading-bar" class="loading-bar"></div>
+        </div>
+        <div class="loading-percent"><span id="loading-percent">0</span>%</div>
+        <div class="loading-text" id="loading-text">Loading...</div>
+      </div>
+    </div>
+
+    <nav id="web-menu">
+      <div class="web-logo">
+        <img src="./assets/img/logo.jpg" alt="Logo Web" class="logo-img" />
+      </div>
+
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-label="Buka Menu"
+        type="button"
+      >
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <div class="menu-links" id="menu-links">
+        <a
+          href="https://unimerz.ac.id/berita/"
+          class="menu-item"
+          id="btn-pink"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          About Campus
+        </a>
+      </div>
+    </nav>
+
+    <div id="threejs-container">
+      <button id="btn-reset-canvas" type="button">RESET HALAMAN</button>
+      <div id="bottom-image">
+        <img
+          id="object-image"
+          src="./assets/img/Nomenklatur_Gigi.png"
+          alt="Informasi Gigi"
+        />
+      </div>
+    </div>
+
+    <footer id="web-footer">
+      <div class="footer-copyright">
+        <p>&copy; 2026 Suci Kurnia Pandewa</p>
+      </div>
+      <div class="footer-socials">
+        <a
+          href="https://www.instagram.com/sss.krnia?igsh=MXRqbnp4cmdnMGhzeg=="
+          target="_blank"
+          class="social-link"
+          title="Instagram"
+        >
+          <img src="./assets/img/ig.jpg" alt="Instagram" class="social-img" />
+          <span class="social-text">Instagram</span>
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      const menuToggle = document.getElementById('menu-toggle');
+      const menuLinks = document.getElementById('menu-links');
+
+      menuToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        menuToggle.classList.toggle('active');
+        menuLinks.classList.toggle('active');
+      });
+
+      menuLinks.addEventListener('mouseleave', () => {
+        menuToggle.classList.remove('active');
+        menuLinks.classList.remove('active');
+      });
+
+      document.addEventListener('click', (event) => {
+        const klikDiDalamMenu = menuLinks.contains(event.target);
+        const klikDiTombolToggle = menuToggle.contains(event.target);
+
+        if (!klikDiDalamMenu && !klikDiTombolToggle) {
+          menuToggle.classList.remove('active');
+          menuLinks.classList.remove('active');
+        }
+      });
+    </script>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,502 @@
+/* ==========================================
+   STYLE STRUKTUR UTAMA & BINGKAI HALAMAN
+========================================== */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  font-family: sans-serif;
+  background-color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+}
+
+#web-header {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #111111;
+}
+
+/* ==========================================
+   STYLE MENU NAVIGASI
+========================================== */
+#web-menu {
+  height: 66px;
+  width: calc(100vw - 40px);
+  margin: 20px 20px 0 20px;
+  padding: 0 20px;
+  background-color: #4c8260;
+  border-radius: 8px !important;
+  box-sizing: border-box;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.menu-links {
+  display: flex;
+  gap: 25px;
+}
+
+.menu-item {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.menu-item:hover {
+  color: #00ff88;
+}
+
+.web-logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.web-logo span {
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #00ff88;
+  border: 1.5px solid #00ff88;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.logo-img {
+  height: 60px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  margin-right: 5px;
+}
+
+/* Tombol Hamburger */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 22px;
+  height: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1002;
+}
+
+.menu-toggle .bar {
+  height: 3px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Media Query Khusus Mobile */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  #web-menu .menu-links {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    width: 100%;
+    background-color: #4c8260;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    gap: 15px;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  }
+
+  #web-menu .menu-links.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  #web-menu .menu-item {
+    font-size: 0.9rem;
+    padding-bottom: 8px;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  #web-menu .menu-item:last-child {
+    border-bottom: none;
+  }
+
+  .menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+    background-color: #00ff88;
+  }
+
+  .menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+    background-color: #00ff88;
+  }
+}
+
+/* ==========================================
+   STYLE KONTAINER MODEL-VIEWER
+========================================== */
+#threejs-container {
+  position: relative;
+  flex-grow: 1;
+  width: calc(100vw - 40px);
+  margin: 15px 20px 15px 20px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+}
+
+#btn-upload-floating {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #00ff88 !important;
+  background-color: #000000;
+  border: 1.5px dashed #00ff88;
+  border-radius: 6px;
+  padding: 8px 15px;
+  z-index: 999 !important;
+  pointer-events: auto !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+#btn-upload-floating:hover {
+  background-color: #00ff88;
+  color: #000000 !important;
+  border-style: solid;
+  box-shadow: 0 0 15px #00ff88;
+  transform: translateY(-1px);
+}
+
+#btn-reset-canvas {
+  position: absolute;
+  top: 20px;
+  left: 15px;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #00ff88 !important;
+  background-color: #000000 !important;
+  border: 1.5px dashed #00ff88 !important;
+  border-radius: 6px !important;
+  padding: 8px 15px;
+  z-index: 999 !important;
+  pointer-events: auto !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+#btn-reset-canvas:hover {
+  background-color: #00ff88 !important;
+  color: #000000 !important;
+  border-style: solid !important;
+  box-shadow: 0 0 15px #00ff88;
+  transform: translateY(-1px);
+}
+
+/* ==========================================
+   FITUR HOTSPOT INTERAKTIF
+========================================== */
+.hotspot-point {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  pointer-events: auto !important;
+  position: relative;
+  opacity: 1;
+}
+
+.hotspot-point:not([data-visible]) {
+  display: block !important;
+  opacity: 0.25 !important;
+  visibility: visible !important;
+}
+
+.hotspot-point:hover {
+  transform: scale(1.25);
+  opacity: 1 !important;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25), 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.hotspot-annotation {
+  display: block;
+  background-color: #111111;
+  color: #ffffff !important;
+  font-family: sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 4px;
+  border: 1px solid #000000;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 250px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hotspot-point:hover .hotspot-annotation {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ==========================================
+   STYLE FOOTER & GAMBAR BAWAH
+========================================== */
+#web-footer {
+  height: 32px;
+  width: calc(100vw - 40px);
+  margin: 0 20px 20px 20px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  background-color: #4c8260;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-copyright {
+  color: #ffffff;
+}
+
+.footer-copyright p {
+  margin: 0;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+}
+
+.social-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px;
+  text-decoration: none !important;
+  opacity: 1 !important;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-1px);
+}
+
+img.social-img {
+  height: 16px !important;
+  width: auto !important;
+  max-height: 16px !important;
+  display: block !important;
+  object-fit: contain !important;
+  opacity: 1 !important;
+}
+
+.social-text {
+  color: #ffffff !important;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+#bottom-image {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4c8260;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  pointer-events: none;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#bottom-image img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 50px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* ==========================================
+   AREA MODEL 3D
+========================================== */
+#main-model {
+  width: 100%;
+  height: calc(100% - 70px);
+  display: block;
+  background-color: #4c8260;
+}
+
+/* =========================================
+   LOADING SCREEN & ANIMATIONS
+========================================= */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #080c0a;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#loading-screen.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loading-content {
+  width: min(420px, 80%);
+  text-align: center;
+}
+
+.loading-logo {
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 20px;
+  border: 3px solid #00ff88;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.25), 0 0 35px rgba(0, 255, 136, 0.12);
+  animation: loadingLogo 2s ease-in-out infinite;
+  margin-bottom: 25px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes loadingLogo {
+  0% { transform: scale(0.95); opacity: 0.75; }
+  50% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.75; }
+}
+
+.loading-title {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  margin-bottom: 30px;
+}
+
+.loading-progress {
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.loading-bar {
+  width: 0%;
+  height: 100%;
+  background: #00ff88;
+  border-radius: 20px;
+  transition: width 0.15s linear;
+  box-shadow: 0 0 8px rgba(0, 255, 136, 0.8), 0 0 18px rgba(0, 255, 136, 0.4);
+}
+
+.loading-percent {
+  margin-top: 15px;
+  color: #00ff88;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.loading-text {
+  margin-top: 8px;
+  color: #777777;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 600px) {
+  .loading-content { width: 75%; }
+  .loading-logo {
+    width: 110px;
+    border-radius: 15px;
+    border-width: 2px;
+    margin-bottom: 20px;
+  }
+  .loading-title {
+    font-size: 14px;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+  }
+  .loading-progress { height: 4px; }
+  .loading-percent { font-size: 12px; }
+  .loading-text { font-size: 10px; }
+}
